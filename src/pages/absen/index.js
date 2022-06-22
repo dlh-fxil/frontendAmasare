@@ -57,7 +57,6 @@ const App = () => {
 								</div>
 							) : (
 								<Camera
-									idealFacingMode={FACING_MODES.ENVIRONMENT}
 									idealResolution={{ height: 640, width: 480 }}
 									onTakePhoto={dataUri => {
 										handleTakePhoto(dataUri);
