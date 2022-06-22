@@ -4,9 +4,15 @@ import AuthSessionStatus from "@molecules/auth/AuthSessionStatus";
 import AuthValidationErrors from "@molecules/auth/AuthValidationErrors";
 import GuestLayout from "@/components/Layouts/GuestLayout";
 import Link from "next/link";
-import { Input, Button } from "@atoms/FormControl";
+import {
+	Input,
+	Button,
+} from "@atoms/FormControl";
 import { useAuth } from "@/hooks/api/auth";
-import { useEffect, useState } from "react";
+import {
+	useEffect,
+	useState,
+} from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -17,7 +23,9 @@ const schema = yup
 			.string()
 			.required("Email harus diisi")
 			.email("Harus Berupa Email"),
-		password: yup.string().required("Password Harus diisi"),
+		password: yup
+			.string()
+			.required("Password Harus diisi"),
 	})
 	.required();
 const Login = () => {
@@ -25,11 +33,17 @@ const Login = () => {
 
 	const { login } = useAuth({
 		middleware: "guest",
-		redirectIfAuthenticated: "/aktivitas",
+		redirectIfAuthenticated:
+			"/aktivitas",
 	});
 
-	const [errorsBackend, setErrors] = useState([]);
-	const [status, setStatus] = useState(null);
+	const [
+		errorsBackend,
+		setErrors,
+	] = useState([]);
+	const [status, setStatus] = useState(
+		null,
+	);
 	const {
 		register,
 		control,
@@ -45,17 +59,30 @@ const Login = () => {
 		reValidateMode: "onChange",
 	});
 	useEffect(() => {
-		if (router.query.reset?.length > 0 && errors.length === 0) {
-			setStatus(atob(router.query.reset));
+		if (
+			router.query.reset?.length > 0 &&
+			errors.length === 0
+		) {
+			setStatus(
+				atob(router.query.reset),
+			);
 		} else {
 			setStatus(null);
 		}
 	});
 
-	const submitForm = async (data, event) => {
+	const submitForm = async (
+		data,
+		event,
+	) => {
 		event.preventDefault();
 		const { email, password } = data;
-		login({ email, password, setErrors, setStatus });
+		login({
+			email,
+			password,
+			setErrors,
+			setStatus,
+		});
 	};
 
 	return (
@@ -75,27 +102,42 @@ const Login = () => {
 						Login
 					</p>
 					<div className="p-4">
-						<AuthSessionStatus status={status} />
-						<AuthValidationErrors errors={errorsBackend} />
+						<AuthSessionStatus
+							status={status}
+						/>
+						<AuthValidationErrors
+							errors={errorsBackend}
+						/>
 					</div>
-					<form className="px-6" onSubmit={handleSubmit(submitForm)}>
+					<form
+						className="px-6"
+						onSubmit={handleSubmit(
+							submitForm,
+						)}>
 						<div className="flex flex-col gap-6">
 							<Input
 								{...register("email")}
 								name="email"
 								placeholder="Alamat Email"
 								size="reguler"
-								error={errors.email?.message}
+								error={
+									errors.email?.message
+								}
 								color="blue"
 								autoFocus
 							/>
 
 							<Input
-								{...register("password")}
+								{...register(
+									"password",
+								)}
 								name="password"
 								placeholder="Password"
 								size="reguler"
-								error={errors.password?.message}
+								error={
+									errors.password
+										?.message
+								}
 								color="blue"
 								type="password"
 							/>
@@ -128,7 +170,9 @@ const Login = () => {
 									</a>
 								</Link>
 
-								<Button type="submit" color="sky">
+								<Button
+									type="submit"
+									color="sky">
 									Masuk
 								</Button>
 							</div>

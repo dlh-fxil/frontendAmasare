@@ -54,6 +54,11 @@ const sidebarItems = [
 		},
 
 		{
+			title: "Absen",
+			route: "/absen",
+			icon: "AcademicCapIcon",
+		},
+		{
 			title: "Peran (Role)",
 			route: "/roles",
 			icon: "AcademicCapIcon",

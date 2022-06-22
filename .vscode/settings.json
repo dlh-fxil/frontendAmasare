@@ -3,7 +3,7 @@
     // "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "editor.fontSize": 14,
-    "workbench.iconTheme": "vscode-icons",
+    // "workbench.iconTheme": "vscode-icons",
     "explorer.confirmDelete": false,
     "editor.formatOnSave": true,
     "eslint.format.enable": true,
@@ -16,7 +16,7 @@
     "files.associations": {
         "*.js": "javascriptreact"
     },
-   
+
     "explorer.confirmDragAndDrop": false,
     "editor.minimap.enabled": false,
     "breadcrumbs.enabled": false,
